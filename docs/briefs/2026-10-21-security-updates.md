@@ -18,3 +18,4 @@
 - `npm audit fix` (non-breaking; lockfile only) with `--before=2026-10-19`, moving vite to a patched release.
 - Left out, named for Brandon: raising rea's _supported_ Node floor (`engines`, installer, doctor, setup, 18 README translations, the CI job that deliberately tests 22.19.0) — a product decision, not a patch; and incur's bundled MCP alpha, which has no upstream fix.
 - Proof: `npm run deps:check`, `npm run check:fast`, `npm run test:fast`, `npm audit` clean.
+- Validation runs on the official Node 24.22.1 download.
