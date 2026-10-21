@@ -840,7 +840,7 @@ build outputs or dependencies are copied into Android.
 service. Root access is limited to staging files, sending the intent, and reading
 diagnostics; installation, compilation, Node, and Chromium run as Termux's app
 UID. The in-app script installs Termux's Android-linked Node distribution,
-checks its version against `.nvmrc`, pins npm from `packageManager`, runs
+checks its major version against `.nvmrc`, pins npm from `packageManager`, runs
 `npm ci`, and builds with `build:termux`. Termux repository packages, including
 Chromium, are resolved at run time; their installed versions are logged.
 
