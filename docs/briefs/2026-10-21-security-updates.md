@@ -15,7 +15,8 @@
 ## Plan
 
 - `.nvmrc`: `24.18.0` → `24.22.1`.
-- `npm audit fix` (non-breaking; lockfile only) with `--before=2026-10-19`, moving vite to a patched release.
+- Move vite to a patched release (8.3.4) in the lockfile only. No package published on or after 2026-10-19 (the window for a freshly hijacked release) enters the lockfile. npm's `--before` alone did not hold: `npm audit fix` and cached registry metadata bypass it. So the lockfile was resolved with `npm install --package-lock-only --before=2026-10-19` against an empty npm cache, re-resolving any late entry the same way, and every changed lockfile entry's publish time was then checked against the registry (0 on or after the cutoff). A plain re-resolution hoisted vitepress's vite 6 to the top level, so the top-level vite entry was set to 8.3.4 from its registry manifest and its rolldown/oxc dependencies re-resolved under the cutoff.
+- The four `real-*` workflows that request `node-version: 24` now set `check-latest: true`; the main CI and release jobs already read `.nvmrc`.
 - Left out, named for Brandon: raising rea's _supported_ Node floor (`engines`, installer, doctor, setup, 18 README translations, the CI job that deliberately tests 22.19.0) — a product decision, not a patch; and incur's bundled MCP alpha, which has no upstream fix.
 - Proof: `npm run deps:check`, `npm run check:fast`, `npm run test:fast`, `npm audit` clean.
 - Validation runs on the official Node 24.22.1 download.
